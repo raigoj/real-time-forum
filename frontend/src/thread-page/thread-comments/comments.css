@@ -1,0 +1,29 @@
+.comments-container {
+    width: 50%;
+    margin: 0 auto;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .comment-content {
+    font-size: 1.2em;
+    margin: 16px 0;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .timestamp {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 10px;
+  }
+  
+  .author {
+    font-size: 14px;
+    color: #aaa;
+  }

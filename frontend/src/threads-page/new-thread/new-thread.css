@@ -1,0 +1,67 @@
+.new-thread-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .thread-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .subject-area {
+    width: 400px;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  .content-area {
+    width: 400px;
+    height: 200px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  .categories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  
+  .category-checkbox {
+    margin-right: 10px;
+  }
+  
+  .new-thread-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .new-thread-button:hover {
+    background-color: #45a049;
+  }
+  
+
+  .checkbox-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .left-column,
+  .right-column {
+    width: calc(50% - 10px);
+  }
+  

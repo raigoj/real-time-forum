@@ -1,0 +1,450 @@
+
+<head>
+    <meta charset="UTF-8"  />
+
+    <title>Forum home</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+
+
+
+
+<body class="general">
+    <a href="/logout" class="logout"><img src="images/logout.png" opacity="0.5" alt="Log out" align="right" style="width:120px;height:120px;"></a>
+    <img src="images/spacer.png" align="left" style="width:120px;height:120px;">
+
+<div class="container">
+    <br>    
+        <img src="images/genie.gif"  alt="xx">    <img src="images/genie.gif"  alt="xx">    <img src="images/genie.gif"   alt="xx">
+    </div><br>
+
+    <div class="top-bar">
+        <h1>
+            Welcome to the Forum!
+        </h1>
+    </div>
+
+    <input type="" class="sameSize" id="myInput" style="float: right" onkeyup="filterFunc()" placeholder="Filter by content" title="Search">
+   
+    <select name="tag-filter" id="myInput2" onchange="filterFunc2()" class="sameSize" style="float: right" >
+        <option value="">Filter by type</option>
+        <option value="{{loggedInId}}">My Threads</option>
+        <option value="Funny">Tagged as Funny</option>
+        <option value="Problematic">Tagged as Problematic</option>
+        <option value="Cat Pictures">Tagged as Cat Pictures</option>
+        <option value="Food & Travel">Tagged as Food & Travel</option>
+    </select>
+    <form action="/likedposts">
+    <button class="filterButton" style="float: right" >Liked by me</button>
+    </form>
+
+
+ 
+
+
+
+
+
+    <div class="main">
+
+            <ol id="threadList">
+            </ol>
+
+    </div>
+    <script src="data.js"></script>
+
+    {{range $index, $post := .}}
+    <script>
+        var container = document.querySelector('ol');
+        var html = `
+            <li class="row">
+                <a href="/thread?id={{$post.Post_id}}">
+                    <h4 class="title">
+                        {{$post.Post_name}} <br>
+                    </h4>
+                    <div class="bottom">
+                        <p class="timestamp">
+                            Created: {{$post.Post_date}} <br>
+                        </p>
+                        <p class="comment-count">
+                            &nbsp; Post author: {{idToUser $post.User_id}} <br>
+                        </p>
+                        <p class="tags">
+                            &nbsp; &nbsp; Tagged as {{idToCategory $post.Category_id}}
+                        </p>
+                        
+                    </div>
+                </a>
+                <div class="smalllikes">
+                        <form action="/createPostLike?val=1&pstId={{$post.Post_id}}" method="post">
+                            <button type="like" value="1"><img src="images/Like.png" class="likeButton" alt="like" class="like"></button>
+                        </form>
+                        <p class="likecount">{{like $post.Post_id}}</p>
+                        <form action="/createPostDislike?val=-1&pstId={{$post.Post_id}}" method="post">
+                            <button type="dislike" value="-1"><img src="images/dislike.png" alt="dislike" class="dislike"></button>
+                        </form>
+                    </div>
+            </li>
+            `
+            container.insertAdjacentHTML('beforeend', html);
+        </script>
+
+    {{end}}
+
+
+<script>
+
+    function filterFunc() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("threadList");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+    </script>
+<script>
+
+
+function filterFunc2() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput2");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("threadList");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+        <div>
+            <form action="/create" method="post">
+                <br><br>     <div class="container">       
+                <h2>If necessary, create a new thread below!</h2></div>
+                <div class = "container">
+                <textarea id="subjectArea" name="PostName" value="PostName" maxlength="50" rows="1" cols="50" placeholder="Thread title"></textarea><br>
+                <textarea id="contentArea" name="PostContent" value="PostContent" maxlength="250" rows="5" cols="50" placeholder="Enter your message"></textarea><br><br>
+
+                <label for="CategoryId" class="container" style="text-align: center;" >Pick a topic:</label>
+                <input type="checkbox" name="CategoryId1" value="1000"> Funny
+                <input type="checkbox" name="CategoryId2" value="200"> Problematic
+                <input type="checkbox" name="CategoryId3" value="30"> Cat Pictures
+                <input type="checkbox" name="CategoryId4" value="4"> Food & Travel</div>
+                
+                <div class="container">
+                <button class="buttonSmall" id="threadbutton" type="submit">New thread</button></div>
+            </form>
+        </div>
+        <script src="data.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        h1, h4, ol {
+            margin: 0;
+        }
+        p {
+            margin: 5px 0;
+        }
+        .top-bar {
+            background-color: rgb(181, 195, 201);
+            padding: 10px 40px;
+        }
+        .main {
+            background-color: #F6F6EF;
+            padding: 10px 15px;
+        }
+        .row {
+            padding: 5px 0;
+        }
+        .bottom {
+            display: flex;
+            color: grey;
+            font-size: 12px;
+        }
+        .timestamp {
+            padding-right: 10px;
+        }
+        .like {
+    width: 20px;
+  }
+
+  .dislike {
+    width: 20px;
+  }
+
+  .likeButton {
+    background-color: transparent;
+    width: 20px;
+    color: transparent;
+
+  }
+
+  .smalllikes {
+    display: flex;
+    justify-content:space-between;
+    width: 60px;
+  }
+  .comment-content {
+      display: flex;
+      justify-content: space-between;
+  }
+  h1 {
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: large;
+}
+
+.general {
+  
+  background: rgb(223, 218, 218);
+
+}
+
+/* Some borders for the form */
+form {
+    border: 30 solid #f1f1f1;
+  }
+  
+  /* Inputs - full width */
+  input[type=username], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  /* Button style */
+  .buttonStyle {
+    background-color: #757474;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+font: bold;
+font-size: large;
+font-family: 'Times New Roman', Times, serif;  }
+
+.buttonSmall {
+  background-color: #521616;
+  color: white;
+  padding: 7px 10px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  font: normal;
+  font-size: medium;
+  font-family: 'Times New Roman', Times, serif; 
+}
+  
+  /* Button effects */
+  button:hover {
+    opacity: 0.6;
+  }
+  
+  
+  /* cover image formatting */
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+  
+  /* cover image, dynamic! */
+  img.avatar {
+    width: 20%;
+  }
+  
+  /* Some more padding */
+  .container {
+    padding: 16px;
+    
+    text-align: center;
+    align-items: center;
+  }
+
+  .container2 {
+    padding: 16px;
+  }
+
+  .likedposts {
+    width: 50px;
+  }
+
+  .sameSize {
+    display: inline-block;
+padding: 5px 10px;
+font-size: 14px;
+border-radius: 0;
+-webkit-appearance: none;
+border: 1px solid grey;
+  }
+
+  .filterButton {
+    background:linear-gradient(to bottom, #f2f2f2 5%, #c1c1c1 100%);
+    border:1px solid #333333;
+    display:inline-block;
+    padding: 5px 10px;
+    border-radius: 0;
+    -webkit-appearance: none;
+    cursor:pointer;
+    color:#323232;
+    font-family:'Courier New', Courier, monospace;
+    font-size:14px;
+    margin: 0px 0;
+    text-decoration:none;
+    width: 10%;
+  }
+  .filterButton:hover {
+    background-color:rgb(181, 195, 201);
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .filterButton:active {
+    position:relative;
+    top:1px;
+  }
+  
+  .footer {
+    position: absolute;
+    width: 100vw;
+    height: 40vh;
+    background: darkorange
+    top: 20vh; 
+  } 
+  .sendBtn1,
+.sendBtn2 {
+    background-color: green;
+    height: 40px;
+    width: 40px;
+    display: table-cell;
+    align-content: center;
+    border: none;
+    cursor: pointer;
+    float: right;
+}
+
+.message1,
+.message2 {
+    display: table-cell;
+    height: 40px;
+    border: none;
+    width: 90%;
+}
+
+.containerMes {
+    display: table;
+    border: 1px solid;
+    padding: 5px;
+    width: 400px;
+    float: left;
+}
+
+.messageS1,
+.messageS2 {
+    border: 1px solid;
+    height: 300px;
+    width: 406px;
+    margin-bottom: 10px;
+    overflow: scroll;
+    scroll-behavior: auto;
+}
+
+.fa {
+    font-size: 18px;
+}
+
+    /* Using this one to stop navigation for the register & sign in buttons */
+
+  .hide { position:absolute; top:-1px; left:-1px; width:10%; height:10%; }
+
+    </style>
+    <br><br><br>    <br><br><br>    <br><br><br>    <br><br><br>
+ <script>
+   var form1 = document.getElementById("chatForm1");
+var form2 = document.getElementById("chatForm2");
+
+var accessMsg1 = document.getElementById('message1');
+var accessMsg2 = document.getElementById('message2');
+
+
+var displayMsg1 = document.getElementById('messageS1');
+var displayMsg2 = document.getElementById('messageS2');
+
+var mesValue1 = 'You: ' + accessMsg1.value;
+var mesValue2 = 'You: ' + accessMsg2.value;
+
+
+function handleForm(event) {
+    event.preventDefault();
+}
+form1.addEventListener('submit', handleForm);
+form2.addEventListener('submit', handleForm);
+
+function sendMessage1() {
+    displayMsg1.innerHTML += 'You: ' + accessMsg1.value + "<br>";
+    displayMsg2.innerHTML += 'He: ' + accessMsg1.value + "<br>";
+    scrollToBottom('messageS1');
+    form1.reset();
+}
+
+function sendMessage2() {
+    displayMsg1.innerHTML += 'He: ' + accessMsg2.value + "<br>";
+    displayMsg2.innerHTML += 'You: ' + accessMsg2.value + "<br>";
+    scrollToBottom('messageS2');
+
+    form2.reset();
+}
+
+function scrollToBottom(id) {
+    var div = document.getElementById(id);
+    div.scrollTop = div.scrollHeight - div.clientHeight;
+}
+
+ </script>
+  <footer class="footer">
+        <div class="containerMes">
+        <div class="messageS1" id="messageS1"></div>
+        <form onsubmit="sendMessage1()" id="chatForm1">
+            <input type="text" name="message1" id="message1" class="message1">
+            <button class="sendBtn1"><i class="fa fa-send-o"></i></button>
+        </form>
+    </div>
+
+
+    <div class="containerMes">
+        <div class="messageS2" id="messageS2"></div>
+
+        <form onsubmit="sendMessage2()" id="chatForm2">
+            <input type="text" name="message2" id="message2" class="message2">
+            <button class="sendBtn2"><i class="fa fa-send-o"></i></button>
+        </form>
+    </div>
+
+  </footer>
+
+</body>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Registration</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+
+
+    <body class="general">
+      <br><br>
+
+
+
+        <h1 style="text-align:center">Please enter your details.</h1>
+        <br><br>
+
+
+
+        <form method="POST"  > 
+
+            <div class="container">
+
+              <label for="username"><b>Username</b></label>
+              <input type="username" class="form-control" placeholder="Enter Username" name="username" required>
+          
+              <label for="password"><b>Password</b></label>
+              <input type="password" class="form-control" id="InputPassword1" placeholder="Enter Password" name="password" required>
+
+              <br><br>        <br>
+
+              <button  type="b" name="actionbutton" formaction="/signin" value="signin" class="buttonStyle">Log in</button>
+            </div>
+          </form>
+          <h1>{{.}}</h1>
+          <style>
+            .general {
+  
+  background: rgb(223, 218, 218);
+
+}
+.container {
+    padding: 16px;
+    
+    text-align: center;
+    align-items: center;
+  }
+  .buttonStyle {
+    background-color: #757474;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+font: bold;
+font-size: large;
+font-family: 'Times New Roman', Times, serif;  
+}
+button:hover {
+    opacity: 0.6;
+  }
+  input[type=username], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+          </style>
+    </body>
+</html>
+

@@ -1,0 +1,54 @@
+.container_newcomm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .new-comment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  form {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  form.narrow {
+    width: 500px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  .buttonSmall_newcomm {
+    width: 20%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button.small {
+    width: 100px;
+    height: 30px;
+  }
+  

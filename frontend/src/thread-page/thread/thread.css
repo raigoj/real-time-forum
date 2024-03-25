@@ -1,0 +1,126 @@
+.thread_row {
+  width: 80%;
+  margin: 16px auto;
+  padding: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: left;
+  
+}
+.title {
+  margin: 0;
+  font-size: 1.5em;
+  margin: 16px 0;
+  font-weight: bold;
+}
+.bottom {
+  margin-top: 16px;
+}
+.thread-cont {
+  font-size: 1.2em;
+  margin: 16px 0;
+  font-weight: bold;  margin: 16px 0;
+}
+.timestamp, .post-author, .tags {
+  color: #888;
+  font-size: 0.8em;
+  margin-top: 8px;
+  display: block;
+}
+.thread_row .thread-content {
+    font-size: 1.5em;
+    margin: 16px 0;
+    font-weight: bold;
+}
+.thread_row .timestamp,
+.thread_row .post-author,
+.thread_row .tags {
+    font-size: 1em;
+    color: #888;
+    margin-top: 8px;
+}
+.chat-button {
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.chat-button:hover {
+  background-color: #45a049;
+  
+}
+.log-off-button-3 {
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+.log-off-button-3:hover {
+  background-color: #45a049;
+}
+
+.back-button {
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 10px; /* add margin-right to create 10px space */
+}
+.back-button:hover {
+  background-color: #45a049;
+}
+.log-off-button-3, .back-button {
+  display: inline-block;
+  width: 80px;
+}
+
+.header-container {
+  position: relative;
+}
+.back-button {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.comments-container {
+  width: 80%;
+  margin: 0 auto;
+}
+.comment-content {
+  font-size: 1.2em;
+  margin: 16px 0;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.comment-timestamp {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+.comment-author {
+  font-size: 14px;
+  color: #aaa;
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}

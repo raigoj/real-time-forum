@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="EN">
+<title>thread</title>
+<link rel="stylesheet" type="text/css" href="stylethread.css">
+<body style="background: rgb(223, 218, 218)">
+    <br><br><br><div class="top-bar">
+        <h1 id="theBigTitle">
+           {{postName}}
+        </h1>
+        <form action="{{checkCookie}}">
+            <button class="filterButton" style="float: right; width: 100px;">Home</button>
+        </form>
+    </div>
+    <div class="main">
+        <div class="header"> 
+            <h4 class="title">
+                By {{postAuthor}}
+            </h4>
+            <div class="bottom">
+                <p class="timestamp">
+                    {{postDate}}
+                </p>
+                <p class="comment-count">
+                </p>
+            </div>
+
+        </div>
+        <div class="comment">
+            <div class="comment-content">
+                {{postContent}}
+            </div>
+        </div>
+        <div class="comments">
+
+            {{range $index, $comment := .}}
+
+            <div class="comment">
+                <div class="top-comment">
+                    <p class="user">
+                        {{idToUser $comment.User_id}}
+                    </p>
+                    <p class="comment-ts">
+                        {{$comment.Comment_date}}
+                    </p>
+                </div>
+                <div class="comment-content">
+                    
+                    {{$comment.Comment_content}}
+                    <div class="smalllikes">
+                        <form action="/createCommentLike?id={{id}}&val=1&cmtId={{$comment.Comment_id}}" method="post">
+                            <button type="like" value="1"><img src="images/Like.png" alt="like" class="like"></button>
+                        </form>
+                        <p class="likecount">{{like $comment.Comment_id}}</p>
+                        <form action="/createCommentLike?id={{id}}&val=-1&cmtId={{$comment.Comment_id}}" method="post">
+                            <button type="dislike" value="-1"><img src="images/dislike.png" alt="dislike" class="dislike"></button>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+            
+            {{end}}
+    
+        </div>
+    </div>
+    
+
+
+    <div>
+        <form action="/createComments?id={{id}}" method="post">
+            <br><br>     <div class="container">       
+            <h2>You can create a new comment below!</h2></div>
+            <div class = "container">
+            <textarea id="contentArea" name="CommentContent" value="CommentContent" maxlength="250" rows="5" cols="50" placeholder="Enter your message"></textarea><br><br>
+
+            </div>
+            <div class="container">
+                <button class="buttonSmall" type="submit">Comment</button>
+
+    </div>
+</form>
+    </div>
+
+    
+    <style>
+        body {
+            margin: 10px 60px;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        h1, h4, ol {
+            margin: 0;
+        }
+        p {
+            margin: 5px 0;
+        }
+        textarea {
+            width: 80%;
+            height: 80px;
+        }
+        button {
+            display: block;
+            margin: 10px 0;
+        }
+        .top-bar {
+            background-color: rgb(181, 195, 201);
+            padding: 0 40px;
+            color: black;
+            display: flex;
+            justify-content:space-between;
+        }
+        .main {
+            background-color: #F6F6EF;;
+            padding: 10px 40px;
+        }
+        .comments {
+            margin: 40px 0;
+        }
+        .comment {
+            margin: 10px 0;
+        }
+        .container {
+            padding: 16px;
+            
+            text-align: center;
+            align-items: center;
+        }
+        .buttonSmall {
+        background-color: #521616;
+        color: white;
+        padding: 7px 10px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 30%;
+        font: normal;
+        font-size: medium;
+        font-family: 'Times New Roman', Times, serif; 
+        margin: 0 auto;
+
+        }
+
+        .row {
+            padding: 5px 0;
+        }
+        .bottom, .top-comment {
+            display: flex;
+            color: grey;
+            font-size: 12px;
+        }
+        .timestamp {
+            padding-right: 10px;
+        }
+        .comment-ts {
+            padding-left: 10px;
+        }
+        .like {
+            width: 20px;
+        }
+
+        .dislike {
+            width: 20px;
+        }
+
+        .smalllikes {
+            display: flex;
+            justify-content:space-between;
+            width: 100px;
+        }
+        .comment-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .filterButton {
+            background:linear-gradient(to bottom, #f2f2f2 5%, #c1c1c1 100%);
+            border:1px solid #333333;
+            display:inline-block;
+            padding: 5px 10px;
+            border-radius: 0;
+            -webkit-appearance: none;
+            cursor:pointer;
+            color:#323232;
+            font-family:'Courier New', Courier, monospace;
+            font-size:14px;
+            margin: 10px 0;
+            text-decoration:none;
+            width: 10%;
+        }
+        .filterButton:hover {
+            background-color:rgb(181, 195, 201);
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .filterButton:active {
+            position:relative;
+            top:1px;
+        }
+        
+  
+  
+    </style>
+</body>
+</html>
